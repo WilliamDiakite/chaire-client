@@ -4,6 +4,10 @@ import type { Handle } from '@sveltejs/kit';
 export const handle = (({ event, resolve }) => {
 
     console.log('[hooks] fetching', event.request.url)
+    console.log('[hooks] fetching', new URL(event.request.url).host)
+    console.log('[hooks] event.params', event.params)
+    console.log('[hooks] pathname', event.url.pathname)
+    console.log('\n')
 
     let lang = event.params.lang ?? null
 

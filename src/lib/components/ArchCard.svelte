@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { t } from '$i18n/i18n';
+	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	export let date: string;
 	export let img: string;
@@ -13,7 +14,7 @@
 	<header>
 		<h1>{$t(type)}</h1>
 		<p>{date}</p>
-		<a href={`${$t('route.archives')}/test1`}>bla</a>
+		<a href={`${PUBLIC_BASE_URL}/${$t('route.archives')}/test1`}>bla</a>
 	</header>
 	{#if img}
 		<img class={`${type === 'filter.publication' ? 'shadow' : ''}`} src={img} alt={imgDesc} />

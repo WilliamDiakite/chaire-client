@@ -17,6 +17,9 @@ const config = {
 		prerender: {
 			handleHttpError: 'warn'
 		},
+		paths: {
+			base: '/chaire-client'
+		},
 		alias: {
 			$lib: 'src/lib/*',
 			$i18n: 'src/lib/i18n/*',

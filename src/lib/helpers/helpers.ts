@@ -1,3 +1,7 @@
+import { t } from "$lib/i18n/i18n";
+import { dev } from "$app/env";
+import { PUBLIC_BASE_URL } from "$env/static/public";
+
 export function createUrlSlug(title: string) {
     const accentsMap: { [key: string]: string } = {
         'à': 'a', 'â': 'a', 'ä': 'a', 'á': 'a', 'ã': 'a', 'å': 'a',
@@ -19,4 +23,3 @@ export function createUrlSlug(title: string) {
 
     return slug;
 }
-
