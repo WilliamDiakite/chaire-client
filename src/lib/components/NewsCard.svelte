@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { t } from '$lib/i18n/i18n';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
+
 	export let date: string;
 	export let img: string;
 	export let imgDesc: string;
@@ -9,7 +9,7 @@
 </script>
 
 <div class="card news-card">
-	<a href={`${PUBLIC_BASE_URL}/${$t('route.news')}/test1`}>bla</a>
+	<a href={`${$t('route.news')}/test1`}>bla</a>
 	<h2>{date}</h2>
 	{#if img}
 		<img src={img} alt={imgDesc} />

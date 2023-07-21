@@ -1,26 +1,25 @@
 <script lang="ts">
-	import { PUBLIC_BASE_URL } from '$env/static/public';
 	import { t } from '$i18n/i18n';
 	import { prevPage } from '$lib/stores/stores';
 </script>
 
 <a href={$prevPage} class="menu-close"><i class="fa-solid fa-xmark" /></a>
 <ul class="menu-navigation">
-	<li><a href={`${PUBLIC_BASE_URL}/${$t('route.home')}`}>{$t('menu.home')}</a></li>
-	<li><a href={`${PUBLIC_BASE_URL}/${$t('route.about')}`}>{$t('menu.about')}</a></li>
+	<li><a href={`${$t('route.home')}`}>{$t('menu.home')}</a></li>
+	<li><a href={`${$t('route.about')}`}>{$t('menu.about')}</a></li>
 	<li>
-		<a href={`${PUBLIC_BASE_URL}/${$t('route.axis1')}`}>{$t('menu.axe1')}</a>
+		<a href={`${$t('route.axis1')}`}>{$t('menu.axe1')}</a>
 		<span>{$t('menu.axe1-sub')}</span>
 	</li>
 	<li>
-		<a href={`${PUBLIC_BASE_URL}/${$t('route.axis2')}`}>{$t('menu.axe2')}</a>
+		<a href={`${$t('route.axis2')}`}>{$t('menu.axe2')}</a>
 		<span>{$t('menu.axe2-sub')}</span>
 	</li>
-	<li><a href={`${PUBLIC_BASE_URL}/${$t('route.tenured')}`}>{$t('menu.tenured')}</a></li>
-	<li><a href={`${PUBLIC_BASE_URL}/${$t('route.participants')}`}>{$t('menu.participants')}</a></li>
-	<li><a href={`${PUBLIC_BASE_URL}/${$t('route.news')}`}>{$t('menu.news')}</a></li>
-	<li><a href={`${PUBLIC_BASE_URL}/${$t('route.archives')}`}>{$t('menu.archives')}</a></li>
-	<li><a href={`${PUBLIC_BASE_URL}/${$t('route.contact')}`}>{$t('menu.contact')}</a></li>
+	<li><a href={`${$t('route.tenured')}`}>{$t('menu.tenured')}</a></li>
+	<li><a href={`${$t('route.participants')}`}>{$t('menu.participants')}</a></li>
+	<li><a href={`${$t('route.news')}`}>{$t('menu.news')}</a></li>
+	<li><a href={`${$t('route.archives')}`}>{$t('menu.archives')}</a></li>
+	<li><a href={`${$t('route.contact')}`}>{$t('menu.contact')}</a></li>
 </ul>
 
 <style>

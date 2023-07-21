@@ -1,4 +1,4 @@
-import { PUBLIC_BASE_URL } from "$env/static/public"
+import { base } from "$app/paths"
 
 
 export const routesSectionI8n: { [route: string]: string } = {
@@ -93,8 +93,8 @@ export const getRedirectUrls = (params: { [name: string]: string }) => {
     } catch (e) {
         console.log('[routesI18n.getRedirectUrls] WARN: locale or section in url not found in available routes')
         redirects = {
-            fr: `${PUBLIC_BASE_URL}/fr`,
-            en: `${PUBLIC_BASE_URL}/en`,
+            fr: `${base}/fr`,
+            en: `${base}/en`,
         }
     }
     return redirects
@@ -106,8 +106,8 @@ export const getRedirectUrls = (params: { [name: string]: string }) => {
 export const getTranslatedUrls = (pathname: string, params: { [name: string]: string }) => {
     const section = Object.keys(params).filter(k => k !== 'lang' && k !== 'slug')[0]
     let redirects = {
-        fr: `${PUBLIC_BASE_URL}/fr`,
-        en: `${PUBLIC_BASE_URL}/en`,
+        fr: `${base}/fr`,
+        en: `${base}/en`,
     }
 
     if (pathname === '/fr' || pathname === '/en') return redirects
@@ -122,8 +122,8 @@ export const getTranslatedUrls = (pathname: string, params: { [name: string]: st
 
     try {
         redirects = {
-            fr: `${PUBLIC_BASE_URL}${redirectLangUrl[section]['fr']}${params.slug ? '/' + params.slug : ''}`,
-            en: `${PUBLIC_BASE_URL}${redirectLangUrl[section]['en']}${params.slug ? '/' + params.slug : ''}`,
+            fr: `${base}${redirectLangUrl[section]['fr']}${params.slug ? '/' + params.slug : ''}`,
+            en: `${base}${redirectLangUrl[section]['en']}${params.slug ? '/' + params.slug : ''}`,
         }
     }
     catch (e) {

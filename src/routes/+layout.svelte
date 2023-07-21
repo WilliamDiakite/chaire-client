@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { t, locale } from '$i18n/i18n';
 	import { page } from '$app/stores';
-	import { archiveType, sectionTitle } from '$lib/stores/stores.js';
+	import { redirects, archiveType, sectionTitle, base } from '$lib/stores/stores.js';
 	import Animation from '$lib/components/Animation.svelte';
 	import Nav from '$components/Nav.svelte';
 	import Footer from '$components/Footer.svelte';
 	import '$lib/styles/reset.css';
 	import '$lib/styles/styles.css';
-	import { redirects } from '$lib/stores/stores.js';
 
 	export let data;
 
 	// update stores
 	$: locale.set(data.lang);
 	$: redirects.set(data.redirects ? data.redirects : $redirects);
+	$: base.set(data.base);
 
 	$: isMenu = $page.route.id === '/[lang=lang]/[menu=menu]';
 	$: showFooter = $page.route.id !== '/[lang=lang]/[menu=menu]' && $page.url.pathname !== '/';

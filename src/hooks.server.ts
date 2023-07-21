@@ -9,15 +9,19 @@ export const handle = (({ event, resolve }) => {
     console.log('[hooks] pathname', event.url.pathname)
     console.log('\n')
 
-    let lang = event.params.lang ?? null
 
+    // Get host to setup base url dynamically
+    const host = new URL(event.request.url).host
+    const base = host === 'williamdiakite.github.io' ? '/chaire-client' : ''
+
+    let lang = event.params.lang ?? null
     if (!lang || !['fr', 'en'].includes(lang)) {
         lang = event.request.headers.get('accept-language')?.split(';')[0]
             ? 'en'
             : 'fr'
     }
 
-    event.locals = { ...event.locals, lang }
+    event.locals = { ...event.locals, lang, base }
 
     return resolve(event, {
         transformPageChunk: ({ html }) => html.replace('%lang%', lang as string)

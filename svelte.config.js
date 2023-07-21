@@ -18,7 +18,7 @@ const config = {
 			handleHttpError: 'warn'
 		},
 		paths: {
-			base: '/chaire-client'
+			base: ''
 		},
 		alias: {
 			$lib: 'src/lib/*',

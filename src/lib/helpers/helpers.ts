@@ -1,6 +1,6 @@
 import { t } from "$lib/i18n/i18n";
 import { dev } from "$app/env";
-import { PUBLIC_BASE_URL } from "$env/static/public";
+import { base } from "$env/static/public";
 
 export function createUrlSlug(title: string) {
     const accentsMap: { [key: string]: string } = {

@@ -1,5 +1,6 @@
 import { derived, writable } from "svelte/store";
 import translations from "./translations";
+import { base } from '$lib/stores/stores'
 
 
 // Code greatly inspired by:
@@ -26,9 +27,11 @@ export function translate(locale: string, key: string, vars: { [key: string]: st
     return text;
 }
 
-export const t = derived(locale, ($locale) => (key: string, vars = {}) =>
-    translate($locale, key, vars)
-);
+export const t = derived([locale, base], ([$locale, $base]) => (key: string, vars = {}) => {
+    let translation = translate($locale, key, vars)
+    key.includes('route') ? translation = `${$base}${translation}` : null
+    return translation
+});
 
 export const importMdFile = derived(locale, ($locale) => (path: string) => {
     const basePath = 'labouvroir/'

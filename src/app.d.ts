@@ -11,7 +11,8 @@ declare global {
 			redirects: {
 				fr: string,
 				en: string,
-			}
+			},
+			base: string,
 		}
 	}
 }

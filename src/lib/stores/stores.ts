@@ -16,3 +16,5 @@ export const redirects = writable({
     fr: '/fr',
     en: '/en'
 })
+
+export const base = writable('')

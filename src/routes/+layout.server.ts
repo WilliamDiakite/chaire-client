@@ -1,6 +1,5 @@
 import { redirect } from '@sveltejs/kit';
 import { getSectionTitle, getRedirectUrls, availableUrls, getTranslatedUrls } from '$i18n/routesI18n.js'
-import { PUBLIC_BASE_URL } from '$env/static/public';
 
 export const prerender = true
 
@@ -11,21 +10,22 @@ export const load = async (event) => {
     let redirects
 
     const filteredSlug = event.url.pathname.match(/(\/\w+){2}/gm)?.at(0)
+    const base = event.locals.base
 
     // console.log('[layout.server.ts]: event.url.pathname', event.url.pathname)
-    // console.log('[layout.server.ts]: PUBLIC_BASE_URL', PUBLIC_BASE_URL)
+    // console.log('[layout.server.ts]: base', base)
     // console.log('[layout.server.ts]: event.locals.lang', event.locals.lang)
     // console.log('[layout.server.ts]: filteredSlug', filteredSlug)
 
-    if (event.url.pathname === PUBLIC_BASE_URL + '/') {
+    if (event.url.pathname === base + '/') {
         // console.log('[layout.server.ts]: redirecting to menu')
         if (event.locals.lang) {
-            throw redirect(307, `${PUBLIC_BASE_URL}/${event.locals.lang}/menu`)
+            throw redirect(307, `${base}/${event.locals.lang}/menu`)
         }
         else {
             console.log('[layout.server.ts]: locals not set up')
             locale = 'fr'
-            throw redirect(307, `${PUBLIC_BASE_URL}/fr/menu`)
+            throw redirect(307, `${base}/fr/menu`)
         }
     }
     else if (filteredSlug && !availableUrls.includes(filteredSlug)) {
@@ -52,6 +52,7 @@ export const load = async (event) => {
         lang: locale,
         sectionTitle: getSectionTitle(event.url.pathname),
         filterType,
-        redirects
+        redirects,
+        base
     }
 }

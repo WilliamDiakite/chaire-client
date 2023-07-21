@@ -2,7 +2,6 @@
 	import { t } from '$i18n/i18n';
 	import { page } from '$app/stores';
 	import { redirects, prevPage, axisFilter, filters } from '$lib/stores/stores';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	export let sectionTitle: string;
 	export let archiveTitle: string | null = null;
@@ -38,9 +37,7 @@
 	const onMouseEnter = () => prevPage.set($page.url.pathname);
 </script>
 
-<a class="btn primary" href={`${PUBLIC_BASE_URL}/${$t('route.menu')}`} on:mouseenter={onMouseEnter}
-	>Menu</a
->
+<a class="btn primary" href={`${$t('route.menu')}`} on:mouseenter={onMouseEnter}>Menu</a>
 
 <div class={`btn tertiary ${filterType === 'none' ? 'long' : ''}`}>
 	{#if sectionTitle}

@@ -1,20 +1,19 @@
-import { PUBLIC_BASE_URL } from "$env/static/public"
-
-console.log('PUBLIC_BASE_URL', PUBLIC_BASE_URL)
+import { base } from "$app/paths"
+console.log('base', base)
 
 const translations = {
     'en': {
         // routes
-        'route.tenured': `en/tenured`,
-        'route.participants': `en/participants`,
-        'route.news': `en/news`,
-        'route.archives': `en/archives`,
-        'route.contact': `en/contact`,
-        'route.axis1': `en/volet-1`,
-        'route.axis2': `en/volet-2`,
-        'route.about': `en/about`,
-        'route.menu': `en/menu`,
-        'route.home': `en/`,
+        'route.home': `/en`,
+        'route.menu': `/en/menu`,
+        'route.about': `/en/about`,
+        'route.tenured': `/en/tenured`,
+        'route.axis1': `/en/volet-1`,
+        'route.axis2': `/en/volet-2`,
+        'route.participants': `/en/participants`,
+        'route.news': `/en/news`,
+        'route.archives': `/en/archives`,
+        'route.contact': `/en/contact`,
 
 
         // menu 
@@ -47,19 +46,16 @@ const translations = {
     },
     'fr': {
         // routes
-        'route.tenured': `fr/titulaire`,
-        'route.participants': `fr/participants`,
-        'route.news': `fr/actualites`,
-        'route.archives': `fr/archives`,
-        'route.contact': `fr/contact`,
-        'route.axis1': `fr/axe-1`,
-        'route.axis2': `fr/axe-2`,
-        'route.about': `fr/a-propos`,
-        'route.menu': `fr/menu`,
-        'route.home': `en/`,
-
-
-
+        'route.home': `/fr`,
+        'route.menu': `/fr/menu`,
+        'route.about': `/fr/a-propos`,
+        'route.tenured': `/fr/titulaire`,
+        'route.axis1': `/fr/axe-1`,
+        'route.axis2': `/fr/axe-2`,
+        'route.participants': `/fr/participants`,
+        'route.news': `/fr/actualites`,
+        'route.archives': `/fr/archives`,
+        'route.contact': `/fr/contact`,
 
         // menu 
         'menu.home': "Page d'accueil",
