@@ -1,0 +1,1 @@
+import{w as s}from"./index.7c06c254.js";const a=s(-1),t=s(""),r=s(""),n=s("/"),c=s("filter.axis1"),i=s([]),o=s({fr:"/fr",en:"/en"}),f=s("");export{c as a,f as b,r as c,a as e,i as f,n as p,o as r,t as s};

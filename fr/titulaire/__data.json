@@ -1,1 +1,1 @@
-{"type":"data","nodes":[{"type":"data","data":[{"lang":1,"sectionTitle":-1,"filterType":2,"redirects":3},"fr","none",{"fr":4,"en":5},"/fr/titulaire","/en/tenured"],"uses":{"params":["slug"],"route":1,"url":1}},null]}
+{"type":"data","nodes":[{"type":"data","data":[{"lang":1,"sectionTitle":-1,"filterType":2,"redirects":3,"base":6},"fr","none",{"fr":4,"en":5},"/fr/titulaire","/en/tenured",""],"uses":{"params":["slug"],"route":1,"url":1}},null]}
