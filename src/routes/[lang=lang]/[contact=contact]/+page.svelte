@@ -86,20 +86,9 @@
 		margin-top: 2rem;
 	}
 
-	#section-mail {
-		grid-column: span 4;
-		margin-left: 0.5rem;
-	}
-
 	#section-follow {
 		margin-right: 0.5rem;
 		grid-row: 2;
-		/** TODO: needs media query when text collapse*/
-	}
-
-	#section-adress {
-		margin-right: 0.5rem;
-		margin-bottom: 6.1rem;
 	}
 
 	#section-adress > p + p {

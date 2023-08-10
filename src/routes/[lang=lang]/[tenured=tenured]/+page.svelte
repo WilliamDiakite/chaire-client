@@ -1,56 +1,70 @@
 <script lang="ts">
-	import img from './righettino.png';
-	import ButtonBtt from '$lib/components/ButtonBtt.svelte';
+	import ImageCard from '$lib/components/ImageCard.svelte';
+
+	export let data;
+
+	const article = data.article;
+	console.log(article);
 </script>
 
 <div class="empty" />
+<article class="container">
+	<h1 class="page-title">{article.name}</h1>
 
-<h1>Lamoureux, Johanne</h1>
+	<div class="image-container">
+		<ImageCard image={article.image.data} />
+	</div>
 
-<img src={img} alt="Righettino" />
-
-<p class="short-description">
-	Professeure au Département d’histoire de l’art et d’études cinématographiques de l’Université de
-	Montréal
-</p>
-
-<div class="text-content">
-	<p>
-		Officia aute eiusmod ad ipsum et. Dolore tempor ex ullamco et tempor Lorem eu sunt sint. Nulla
-		do labore cupidatat voluptate nulla irure nulla proident tempor cillum fugiat cupidatat.
+	<p class="short-description">
+		{article.position}
 	</p>
-	<p>Anim nisi duis nulla laborum nostrud deserunt anim.</p>
-	<p>
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione commodi molestiae voluptatum
-		odio consequuntur labore, et eveniet repellat recusandae assumenda nisi itaque quia ut. Porro
-		sed recusandae dolore explicabo tenetur! Lorem ipsum, dolor sit amet consectetur adipisicing
-		elit. Ratione commodi molestiae voluptatum odio consequuntur labore, et eveniet repellat
-		recusandae assumenda nisi itaque quia ut. Porro sed recusandae dolore explicabo tenetur!
-	</p>
-</div>
+
+	<div class="tenured-content">
+		{@html article.bio}
+		<div class="publications">
+			<p class="publication-title">Publications :</p>
+			{@html article.publications}
+		</div>
+	</div>
+</article>
 
 <div class="empty-row" />
-<ButtonBtt />
 
 <style>
-	h1 {
-		margin-bottom: 1.4rem;
-		grid-column: 1/-1;
+	.container {
+		display: contents;
 	}
-	img {
-		grid-column: span 2;
-		width: 100%;
+
+	.publications {
+		margin-top: 1rem;
 	}
 
 	.short-description {
 		grid-column: span 2;
-		/* padding: var(--padding-small) 2rem 0 0; */
 		padding-top: var(--padding-small);
+		width: 80%;
 	}
 
-	.text-content {
+	.tenured-content {
 		grid-column: span 4;
-		padding: var(--padding-small) 0 0 var(--padding-small);
+		padding: var(--padding-small) 0 0 1rem;
 		/* grid-row: 2; */
+	}
+
+	.image-container {
+		grid-column: span 2;
+		width: 95%;
+	}
+
+	@media screen and (max-width: 480px) {
+		.image-container {
+			grid-column: 1/-1;
+		}
+	}
+
+	@media screen and (min-width: 481px) and (max-width: 820px) {
+		.image-container {
+			grid-column: 1/4;
+		}
 	}
 </style>

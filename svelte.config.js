@@ -15,7 +15,7 @@ const config = {
 			fallback: './src/app.html'
 		}),
 		prerender: {
-			handleHttpError: 'warn'
+			handleHttpError: (err) => console.log('\n------\n[prerender error]', err, '\n-------')
 		},
 		paths: {
 			base: ''

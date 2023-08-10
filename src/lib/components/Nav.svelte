@@ -1,125 +1,92 @@
 <script lang="ts">
 	import { t } from '$i18n/i18n';
 	import { page } from '$app/stores';
-	import { redirects, prevPage, axisFilter, filters } from '$lib/stores/stores';
+	import {
+		redirects,
+		prevPage,
+		screenType,
+		sectionTitle,
+		archiveType,
+		filterType,
+		i18nSlug,
+		slug
+	} from '$lib/stores/stores';
+	import Filters from './Filters.svelte';
+	import { getTranslatedUrls } from '$lib/i18n/routesI18n';
+	import { invalidateAll, invalidate } from '$app/navigation';
 
-	export let sectionTitle: string;
-	export let archiveTitle: string | null = null;
-	export let filterType: 'role' | 'event' | 'none' = 'none';
+	export let isMobile = false;
 
-	const filterAxis = ['filter.axis1', 'filter.axis2'];
-	const allFilters = {
-		role: [
-			'filter.researcher',
-			'filter.coresearcher',
-			'filter.collaborators',
-			'filter.student',
-			'filter.institution'
-		],
-		event: ['filter.workshop', 'filter.colloque', 'filter.conf'],
-		none: []
-	};
+	const onMouseEnter = () =>
+		$page.route.id?.includes('menu') ? null : prevPage.set($page.url.pathname);
 
-	$: filterList = allFilters[filterType];
-
-	const filterOnClick = (e) => {
-		const filter = e.target.id;
-		if ($filters.includes(filter)) {
-			$filters.splice($filters.indexOf(filter), 1);
-		} else {
-			$filters.push(filter);
-		}
-		$filters = $filters;
-	};
-
-	const axisOnClick = (e) => axisFilter.set(e.target.id);
-
-	const onMouseEnter = () => prevPage.set($page.url.pathname);
+	$: isFixed = $page.route.id === '/[lang=lang]';
+	$: addBg = isFixed && ($screenType === 'tablet-vertical' || $screenType === 'mobile');
+	$: console.log('Slugs set in Nav', $slug, $i18nSlug);
 </script>
 
-<a class="btn primary" href={`${$t('route.menu')}`} on:mouseenter={onMouseEnter}>Menu</a>
+<nav class={`${isFixed ? 'nav-fixed' : ''} ${addBg ? 'clr-bg' : ''}`}>
+	<a class="btn primary menu-btn" href={`${$t('route.menu')}`} on:mouseenter={onMouseEnter}>Menu</a>
 
-<div class={`btn tertiary ${filterType === 'none' ? 'long' : ''}`}>
-	{#if sectionTitle}
-		{sectionTitle}
-	{/if}
-</div>
-
-<div class="tags">
-	{#if filterType !== 'none'}
-		{#if filterType === 'role' || filterType === 'event'}
-			<ul class="axis-filters" role="listbox">
-				{#each filterAxis as f}
-					<li role="option" aria-selected={$axisFilter === f}>
-						<button
-							id={f}
-							class={`btn primary ${$axisFilter === f ? 'primary-selected' : ''}`}
-							on:click={axisOnClick}
-						>
-							{$t(f)}
-						</button>
-					</li>
-				{/each}
-			</ul>
-			<ul class="2-level" role="listbox">
-				{#each filterList as f}
-					<li role="option" aria-selected={$filters.includes(f)}>
-						<button
-							id={f}
-							class={`btn secondary ${$filters.includes(f) ? 'secondary-selected' : ''}`}
-							on:click={filterOnClick}
-						>
-							{$t(f)}
-						</button>
-					</li>
-				{/each}
-			</ul>
-		{:else if archiveTitle}
-			<div class="btn secondary">{archiveTitle}</div>
+	<div
+		class={`btn tertiary ${$filterType === 'none' ? 'long' : ''} ${
+			!$sectionTitle ? 'transparent' : ''
+		} section-title`}
+	>
+		{#if $sectionTitle && !isMobile}
+			{$sectionTitle}
 		{/if}
+	</div>
+
+	{#if $filterType !== 'none'}
+		{#if !isMobile && ($filterType === 'role' || $filterType === 'event')}
+			<Filters addAllBtn={$page.route.id?.includes('archives')} bind:filterType={$filterType} />
+		{:else if $archiveType}
+			<div class="btn secondary">{$archiveType}</div>
+		{/if}
+	{:else}
+		<div class="nav-fill" />
 	{/if}
-</div>
-<ul class="lang-selector">
-	<li>
-		<a
-			class="btn primary"
-			href={$redirects.fr}
-			rel="alternative"
-			hreflang="fr"
-			data-sveltekit-reload>FR</a
-		>
-	</li>
-	<li>
-		<a
-			class="btn primary"
-			href={$redirects.en}
-			rel="alternative"
-			hreflang="en"
-			data-sveltekit-reload>EN</a
-		>
-	</li>
-</ul>
+
+	<ul class="lang-selector">
+		<li>
+			<a
+				class="btn primary"
+				href={$page.data.lang === 'fr' ? $page.url.pathname : `${$redirects.fr}/${$i18nSlug}`}
+				rel="alternative"
+				on:click={() => invalidateAll()}
+				hreflang="fr">FR</a
+			>
+		</li>
+		<li>
+			<a
+				class="btn primary"
+				href={$page.data.lang === 'en' ? $page.url.pathname : `${$redirects.en}/${$i18nSlug}`}
+				rel="alternative"
+				on:click={() => invalidateAll()}
+				hreflang="en">EN</a
+			>
+		</li>
+	</ul>
+</nav>
 
 <style>
-	.axis-filters {
-		display: flex;
-		gap: 1rem;
+	.nav-fixed {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-height: fit-content !important;
+		z-index: 1;
 	}
-
-	button {
-		cursor: pointer;
-		user-select: none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
+	.clr-bg {
+		background-color: #ff6118;
 	}
-
+	.section-title {
+		min-width: max-content;
+	}
 	.long {
 		width: max-content;
-	}
-
-	.tags {
-		grid-column: span 5;
 	}
 
 	.lang-selector {
@@ -132,22 +99,10 @@
 		margin-right: 1rem;
 	}
 
-	.tags > ul {
-		display: flex;
-		gap: 1rem;
+	.nav-fill {
+		grid-column: span 5;
 	}
-
-	.tags > * + * {
-		margin-top: 0.5rem;
-	}
-
-	.primary-selected {
-		background-color: orangered;
-		border-color: orangered;
-	}
-	.secondary-selected {
-		border-color: orangered;
-		color: orangered;
-		border-width: 1px;
+	.transparent {
+		opacity: 0;
 	}
 </style>

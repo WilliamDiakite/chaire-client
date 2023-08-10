@@ -1,27 +1,69 @@
 import { base } from "$app/paths"
 
+const slugI18n: { fr: string, en: string }[] = [
+    {
+        fr: 'volet-1',
+        en: 'axis-1',
+    },
+    {
+        fr: 'volet-2',
+        en: 'axis-2',
+    },
+    {
+        fr: 'a-propos',
+        en: 'about',
+    },
+]
 
-export const routesSectionI8n: { [route: string]: string } = {
-    '/tenured': 'Tenured',
-    '/titulaire': 'Titulaire',
-    '/team': 'Team',
-    '/equipe': 'Équipe',
-    '/news': 'News',
-    '/actualites': 'Actualités',
-    '/archives': 'Archives',
-    '/contact': 'Contact',
-    '/axe-1': 'Axe 1 : Vers un musée citoyen',
-    '/axis-1': 'Axis 1: ([i18n/routesI18n.ts] needs translation)',
-    '/axe-2': 'Axe 2 : Nouveaux usages des collections muséales',
-    '/axis-2': 'Axis 1: Museum collections, new practices',
-    '/about': 'About',
-    '/a-propos': 'À propos',
+const routesSectionI8n: { [name: string]: { [lang: string]: string } } = {
+    about: {
+        fr: 'À propos de la Chaire',
+        en: 'About the Chaire',
+    },
+    archives: {
+        fr: 'Archives',
+        en: 'Archives',
+    },
+    axis1: {
+        fr: 'Volet 1 : Vers un musée citoyen',
+        en: `Axis 1`
+    },
+    axis2: {
+        fr: `Volet 2 : Nouveaux usages des collections muséales`,
+        en: `Axis 2`
+    },
+    contact: {
+        fr: `Contact`,
+        en: `Contact`
+    },
+    menu: {
+        fr: `Menu`,
+        en: `Menu`
+    },
+    news: {
+        fr: `Actualités`,
+        en: `News`
+    },
+    participants: {
+        fr: `Participants`,
+        en: `Participants`
+    },
+    tenured: {
+        fr: `Titulaire`,
+        en: `Tenured`
+    },
 }
 
-export const getSectionTitle = (pathname: string) => {
-    // console.log('PATHNAME', pathname)
-    const section = pathname.match(/(\/\w+){2}/gm)?.at(1)
-    return routesSectionI8n[section as string]
+export const getSectionTitle = ({ lang, ...rest }: { lang: string, }) => {
+    if (Object.keys(rest).length === 0) return ''
+    const key = Object.keys(rest).find(k => k !== 'lang' && k !== 'slug')
+
+    if (key && !(key in routesSectionI8n))
+        return ''
+
+    console.log('\n\n[routesI18n.getSectionTitle] key', key, '\n\n')
+
+    return routesSectionI8n[key as string][lang]
 }
 
 const redirectLangUrl: { [name: string]: { [lang: string]: string } } = {
@@ -34,11 +76,11 @@ const redirectLangUrl: { [name: string]: { [lang: string]: string } } = {
         en: `/en/archives`
     },
     axis1: {
-        fr: `/fr/axe-1`,
+        fr: `/fr/volet-1`,
         en: `/en/axis-1`
     },
     axis2: {
-        fr: `/fr/axe-2`,
+        fr: `/fr/volet-2`,
         en: `/en/axis-1`
     },
     contact: {
@@ -85,7 +127,12 @@ export const getRedirectUrls = (params: { [name: string]: string }) => {
 
     try {
         // Find the section name in params and create redirects object
-        const section = Object.keys(params).filter(k => k !== 'lang' && k !== 'slug')[0]
+        let section = Object.keys(params).filter(k => k !== 'lang' && k !== 'slug')[0]
+        if (section === 'axis') {
+            if (params[section].includes('1') || params[section].includes('2')) section = `axis${params[section].split('-')[1]}`
+            else if (params[section] === 'about' || params[section] === 'a-propos') section = 'about'
+        }
+        console.log('SECTION', section, params)
         redirects = {
             fr: `${redirectLangUrl[section]['fr']}${params.slug ? '/' + params.slug : ''}`,
             en: `${redirectLangUrl[section]['en']}${params.slug ? '/' + params.slug : ''}`,
@@ -114,22 +161,28 @@ export const getTranslatedUrls = (pathname: string, params: { [name: string]: st
 
     if (!section && pathname) {
         const locale = pathname.split('/')[1]
-        redirects = {
+        return {
             fr: pathname.replace(`${locale}`, 'fr'),
             en: pathname.replace(`${locale}`, 'en'),
         }
     }
 
     try {
-        redirects = {
-            fr: `${base}${redirectLangUrl[section]['fr']}${params.slug ? '/' + params.slug : ''}`,
-            en: `${base}${redirectLangUrl[section]['en']}${params.slug ? '/' + params.slug : ''}`,
+        if (section === 'axis') {
+            const slugMap = slugI18n.find(s => s.fr === params[section] || s.en === params[section])
+            redirects = {
+                fr: `${base}/fr/${slugMap?.fr}`,
+                en: `${base}/en/${slugMap?.en}`,
+            }
         }
+        else
+            redirects = {
+                fr: `${base}${redirectLangUrl[section]['fr']}`,
+                en: `${base}${redirectLangUrl[section]['en']}`,
+            }
     }
     catch (e) {
-        console.log('\ngetTranslatedUrls failed')
-        console.log(params)
-        console.log(section)
+        console.log('\ngetTranslatedUrls failed', { section, params })
     }
 
     return redirects

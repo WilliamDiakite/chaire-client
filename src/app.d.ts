@@ -7,7 +7,7 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 		interface Locals {
-			lang: string,
+			lang: 'en' | 'fr',
 			redirects: {
 				fr: string,
 				en: string,

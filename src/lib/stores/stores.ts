@@ -1,4 +1,5 @@
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
+import { page } from '$app/stores';
 
 // selected participant
 export const expandedChildIndex = writable(-1)
@@ -18,3 +19,24 @@ export const redirects = writable({
 })
 
 export const base = writable('')
+export const homeShowFooter = writable(true)
+
+export const screenWidth = writable(1200 as number | undefined)
+export const screenType = derived(screenWidth, ($screenWidth) => {
+    if (!$screenWidth) return 'desktop';
+    if ($screenWidth <= 480) return 'mobile';
+    else if ($screenWidth >= 481 && $screenWidth <= 820) return 'tablet-vertical';
+    else if ($screenWidth >= 821 && $screenWidth <= 1024) return 'tablet-horizontal';
+    else return 'desktop';
+})
+
+export const slug = writable('')
+export const i18nSlug = derived([page, slug], ([$page, $slug]) => {
+    console.log('$page from stores', $page.route.id, $slug)
+    if ($page && (
+        $page.route.id === '/[lang=lang]/[news=news]/[slug]' ||
+        $page.route.id === '/[lang=lang]/[archives=archives]/[slug]'
+    ))
+        return $slug
+    else return ''
+})

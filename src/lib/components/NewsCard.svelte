@@ -1,35 +1,56 @@
 <script lang="ts">
-	import { t } from '$lib/i18n/i18n';
+	import { page } from '$app/stores';
+	import ImageCard from './ImageCard.svelte';
 
-	export let date: string;
-	export let img: string;
-	export let imgDesc: string;
-	export let title: string;
-	export let description: string;
+	export let data: {
+		date: string;
+		title: string;
+		description: string;
+		images: {
+			data: {
+				attributes: {
+					alternativeText: string;
+				};
+				formats: {
+					thumbnail: {
+						url: string;
+					};
+				};
+			};
+		}[];
+		imgPlacement?: 'top' | 'bottom';
+		slug: string;
+	};
+
+	console.log(data);
+
+	export let hideBorder = false;
 </script>
 
-<div class="card news-card">
-	<a href={`${$t('route.news')}/test1`}>bla</a>
-	<h2>{date}</h2>
-	{#if img}
-		<img src={img} alt={imgDesc} />
+<a
+	class={`card news-card ${hideBorder ? 'hide-border' : ''}`}
+	href={`${$page.url.pathname}/${data.slug}`}
+>
+	<h1 class="card-title">{data.date}</h1>
+	{#if data.imgPlacement === 'top'}
+		{#if data.images.length > 0}
+			<ImageCard image={data.images.data[0]} />
+		{/if}
 	{/if}
-	<div>
-		<p class="title">{title}</p>
-		<p class="description">{description}</p>
+	<div class={`${data.images.length > 0 ? '' : 'no-images'}`}>
+		<h2 class="card-description-title">{data.title}</h2>
+		<p class="card-description">{data.description}</p>
 	</div>
-</div>
+
+	{#if data.imgPlacement === 'bottom'}
+		{#if data.images}
+			<ImageCard image={data.images.data[0]} />
+		{/if}
+	{/if}
+</a>
 
 <style>
-	h2 {
-		font-size: var(--fs-title);
-	}
-	img {
-		max-width: 100%;
+	.no-image {
 		margin-top: 1rem;
-	}
-
-	.title {
-		font-weight: bold;
 	}
 </style>

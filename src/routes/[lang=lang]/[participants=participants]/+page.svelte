@@ -1,8 +1,8 @@
 <script lang="ts">
 	import ParticipantCard from '$lib/components/ParticipantCard.svelte';
-	import type { Participant } from '$lib/data.js';
 	import { expandedChildIndex } from '$lib/stores/stores';
 	import { axisFilter, filters } from '$lib/stores/stores';
+	import type { Participant } from '$lib/data.d.ts';
 
 	export let data;
 
@@ -12,13 +12,13 @@
 		.filter((p) => ($filters.length > 0 ? $filters.includes(p.role) : true))
 		.reduce((grouped: { [key: string]: Participant[] }, p) => {
 			const key = p.name[0];
-			grouped[key] ? grouped[key].append(p) : (grouped[key] = [p]);
+			grouped[key] ? grouped[key].push(p) : (grouped[key] = [p]);
 			return grouped;
 		}, {});
 </script>
 
 {#each Array.from(Object.keys(grouped)).sort() as l}
-	<section>
+	<section class="member-list">
 		<h1>{l}</h1>
 		<ul>
 			{#each grouped[l] as data, i}

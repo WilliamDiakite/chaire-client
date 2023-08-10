@@ -50,11 +50,6 @@
 <div class="abs full" style="background-color: orange;" />
 
 <style>
-	.animation {
-		width: 100%;
-		height: 100%;
-	}
-
 	.abs {
 		position: absolute;
 		top: 0;

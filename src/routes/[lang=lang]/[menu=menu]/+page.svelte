@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { t } from '$i18n/i18n';
-	import { prevPage } from '$lib/stores/stores';
+	import { prevPage, screenType } from '$lib/stores/stores';
 </script>
 
-<a href={$prevPage} class="menu-close"><i class="fa-solid fa-xmark" /></a>
+{#if $screenType !== 'desktop'}
+	<a href={$prevPage} class="menu-close"><img src="/xmark.svg" alt="Close menu logo" /></a>
+{/if}
 <ul class="menu-navigation">
 	<li><a href={`${$t('route.home')}`}>{$t('menu.home')}</a></li>
 	<li><a href={`${$t('route.about')}`}>{$t('menu.about')}</a></li>
@@ -24,14 +26,17 @@
 
 <style>
 	.menu-close {
-		/* background-color: var(--clr-accent); */
-		position: absolute;
 		font-size: 3rem;
 		border: none;
-		top: -4rem;
 		left: var(--padding-main);
 		color: white;
 		cursor: pointer;
+		margin-bottom: 1rem;
+	}
+
+	.menu-close > img {
+		width: 3.5rem;
+		color: white;
 	}
 
 	.menu-navigation {
@@ -42,7 +47,7 @@
 
 	.menu-navigation > li {
 		--padding-vertical: 0.8rem;
-		border-top: var(--border);
+		/* border-top: var(--border); */
 		border-bottom: var(--border);
 		padding: var(--padding-vertical) 0 var(--padding-vertical) 0.1rem;
 		transition: background-color 0.2s ease;
@@ -52,10 +57,6 @@
 		border-top: var(--border);
 	}
 
-	.menu-navigation > li:hover {
-		background-color: white;
-	}
-
 	a {
 		color: black;
 		font-size: 2.4rem;
@@ -63,8 +64,14 @@
 		margin-right: 2.5rem;
 	}
 
-	i {
-		width: 150%;
-		color: white;
+	@media (hover: hover) {
+		.menu-navigation > li:hover {
+			background-color: white;
+		}
+	}
+	@media (pointer: coarse) {
+		.menu-navigation > li:t {
+			background-color: white;
+		}
 	}
 </style>

@@ -1,11 +1,14 @@
 <script lang="ts">
 	import type { Participant } from '$lib/data';
+	import ImageCard from './ImageCard.svelte';
 	import { expandedChildIndex } from '$lib/stores/stores';
 	import { slide, fade } from 'svelte/transition';
 
 	export let data: Participant;
 	export let expanded = false;
 	export let noBorder = false;
+
+	console.log('data', data);
 
 	let li: HTMLLIElement;
 	let classes: string[];
@@ -24,9 +27,12 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<li
-	class={`${classes.join(' ')}`}
+<div
+	class={`member ${classes.join(' ')}`}
 	bind:this={li}
+	role="button"
+	aria-label="Toggle Member Details"
+	tabindex="0"
 	on:click={onClick}
 	on:mouseover={onMouseOver}
 	on:mouseleave={() => li.classList.remove('hover')}
@@ -35,22 +41,20 @@
 >
 	{#if expanded}
 		<article class="member-card" transition:slide|local={{ duration: 300, delay: 100, axis: 'y' }}>
-			<div out:fade|local={{ duration: 200 }}>
+			<header out:fade|local={{ duration: 200 }}>
 				<div class="name">{data.name}</div>
 				<div class="role">{data.position}</div>
 				<div class="uni">{data.affiliation}</div>
-			</div>
+			</header>
 
-			<img out:fade|local src={data.image} alt={`photo de profil de ${data.name}`} />
-			<div class="content" out:fade|local>
-				<p class="bio">
-					{@html data.bio}
-				</p>
+			<ImageCard image={data.image.data} />
+			<div class="bio" out:fade|local>
+				{@html data.bio}
 
-				<p>Publications</p>
-				<p class="publications">
+				{#if data.publications}
+					<p class="publications-title">Publications :</p>
 					{@html data.publications}
-				</p>
+				{/if}
 			</div>
 		</article>
 	{:else}
@@ -58,22 +62,14 @@
 			{data.name}
 		</div>
 	{/if}
-</li>
+</div>
 
 <style>
-	li {
+	.member {
 		border-top: var(--border-accent);
 		padding: 0.8rem 0;
 		padding-left: 0.4rem;
 		transition: all 0.1s ease-in;
-	}
-
-	img {
-		grid-column: span 3;
-		display: block;
-		max-width: 70%;
-		object-fit: contain;
-		filter: grayscale();
 	}
 
 	.hover {
@@ -85,30 +81,9 @@
 		background-color: white !important;
 	}
 
-	.content {
-		grid-column: span 8;
-	}
-
 	.noBorder {
 		border: none;
 	}
-
-	.member-card {
-		display: grid;
-		grid-template-columns: repeat(16, 1fr);
-	}
-
-	.member-card > div:first-child {
-		grid-column: span 5;
-	}
-
-	/* .member-card > div:nth-child(2) {
-		grid-column: span 11;
-		display: flex;
-		flex-direction: row;
-		gap: 3rem;
-		align-items: start;
-	} */
 
 	.name {
 		font-weight: bold;
@@ -117,11 +92,5 @@
 
 	.role {
 		margin-bottom: 0.5rem;
-	}
-
-	.publications {
-		margin-top: 1rem;
-		font-size: 0.7rem;
-		line-height: 1rem;
 	}
 </style>

@@ -4,26 +4,19 @@ import { getSectionTitle, getRedirectUrls, availableUrls, getTranslatedUrls } fr
 export const prerender = true
 
 export const load = async (event) => {
-
     let filterType: 'role' | 'event' | 'none' = 'none'
     let locale
     let redirects
 
-    const filteredSlug = event.url.pathname.match(/(\/\w+){2}/gm)?.at(0)
+    const filteredSlug = event.url.pathname.match(/\/\w{2}\/[\w-]+(?=\/|$)/gm)?.at(0)
+
     const base = event.locals.base
 
-    // console.log('[layout.server.ts]: event.url.pathname', event.url.pathname)
-    // console.log('[layout.server.ts]: base', base)
-    // console.log('[layout.server.ts]: event.locals.lang', event.locals.lang)
-    // console.log('[layout.server.ts]: filteredSlug', filteredSlug)
-
     if (event.url.pathname === base + '/') {
-        // console.log('[layout.server.ts]: redirecting to menu')
         if (event.locals.lang) {
             throw redirect(307, `${base}/${event.locals.lang}/menu`)
         }
         else {
-            console.log('[layout.server.ts]: locals not set up')
             locale = 'fr'
             throw redirect(307, `${base}/fr/menu`)
         }
@@ -36,7 +29,6 @@ export const load = async (event) => {
 
         redirects = getRedirectUrls(event.params)
         const redirectUrl = redirects[locale as 'fr' | 'en']
-
         throw redirect(307, redirectUrl)
     }
     else {
@@ -45,12 +37,11 @@ export const load = async (event) => {
     }
 
     if (event.route.id === '/[lang=lang]/[participants=participants]') filterType = 'role';
-    else if (event.route.id === '/[lang=lang]/[archives=archives]' ||
-        event.route.id === '/[lang=lang]/[news=news]') filterType = 'event';
+    else if (event.route.id === '/[lang=lang]/[archives=archives]') filterType = 'event';
 
     return {
         lang: locale,
-        sectionTitle: getSectionTitle(event.url.pathname),
+        sectionTitle: getSectionTitle({ lang: event.locals.lang, ...event.params }),
         filterType,
         redirects,
         base

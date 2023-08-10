@@ -1,27 +1,35 @@
 <script lang="ts">
-	import ButtonBtt from '$lib/components/ButtonBtt.svelte';
 	import { sectionTitle } from '$lib/stores/stores.js';
+	import ButtonBtt from '$lib/components/ButtonBtt.svelte';
+	import ImageCard from '$lib/components/ImageCard.svelte';
+	import { slug } from '$lib/stores/stores.js';
 
 	export let data;
 
-	$sectionTitle = data.header;
+	$: article = data ? data.article : null;
+
+	$: $sectionTitle = article && article.header ? article.header : '';
 </script>
 
 <div class="empty" />
 
 <section>
-	<article class="text-content">
-		{@html data.content}
+	<article class="text-content axis">
+		{@html article.content}
 	</article>
 
 	<div class="images">
-		<div class="image-container big">
-			<img src="/sample2.png" alt="" />
-			<p>La Chaire de muséologie citoyenne aborde le musée à travers.</p>
-		</div>
 		<div class="image-container">
-			<img class="medium" src="/sample1.png" alt="" />
-			<p>La Chaire de muséologie citoyenne aborde le musée à travers.</p>
+			{#if article.image_small.data}
+				<ImageCard image={article.image_small.data} />
+			{/if}
+			<p>{article.image_small.data.attributes.alternativeText}</p>
+		</div>
+		<div class="image-container big">
+			{#if article.image_big && article.image_big.data}
+				<ImageCard image={article.image_big.data} />
+				<p>{article.image_big.data.attributes.alternativeText}</p>
+			{/if}
 		</div>
 	</div>
 </section>
@@ -56,9 +64,16 @@
 	}
 
 	.big {
-		max-width: 80%;
+		max-width: 90%;
 	}
-	.medium {
-		max-width: 60%;
+
+	@media screen and (min-width: 481px) and (max-width: 820px) {
+		.images {
+			grid-column: 1/-1;
+		}
+
+		.image-container {
+			padding-left: 0;
+		}
 	}
 </style>
