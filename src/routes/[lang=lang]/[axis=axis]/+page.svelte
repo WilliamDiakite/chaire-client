@@ -11,6 +11,10 @@
 	$: $sectionTitle = article && article.header ? article.header : '';
 </script>
 
+<svelte:head>
+	<title>{$sectionTitle}</title>
+</svelte:head>
+
 <div class="empty" />
 
 <section>

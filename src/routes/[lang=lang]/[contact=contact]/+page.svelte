@@ -3,6 +3,10 @@
 	$sectionTitle = 'Contact';
 </script>
 
+<svelte:head>
+	<title>Contact</title>
+</svelte:head>
+
 <div class="left">
 	<section id="section-adress">
 		<h2>Adresse</h2>

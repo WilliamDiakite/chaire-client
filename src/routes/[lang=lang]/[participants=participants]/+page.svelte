@@ -17,6 +17,10 @@
 		}, {});
 </script>
 
+<svelte:head>
+	<title>Participants</title>
+</svelte:head>
+
 {#each Array.from(Object.keys(grouped)).sort() as l}
 	<section class="member-list">
 		<h1>{l}</h1>

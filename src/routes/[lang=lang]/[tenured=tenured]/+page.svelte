@@ -1,11 +1,15 @@
 <script lang="ts">
 	import ImageCard from '$lib/components/ImageCard.svelte';
-
+	import { sectionTitle } from '$lib/stores/stores.js';
 	export let data;
 
 	const article = data.article;
 	console.log(article);
 </script>
+
+<svelte:head>
+	<title>{$sectionTitle}</title>
+</svelte:head>
 
 <div class="empty" />
 <article class="container">
