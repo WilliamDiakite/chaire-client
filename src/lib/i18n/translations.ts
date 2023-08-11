@@ -77,7 +77,7 @@ const translations = {
         'filter.colloque': 'Colloque',
         'filter.conference': 'Conférence',
         'filter.publication': 'Publication',
-        'filter.studyDay': "Journées d'étude",
+        'filter.studyDay': "Journée d'étude",
         'filter.researcher': 'Chercheurs',
         'filter.coresearcher': 'Co-chercheurs',
         'filter.collaborators': 'Collaborateurs',

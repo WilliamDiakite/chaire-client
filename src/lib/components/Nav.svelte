@@ -12,8 +12,7 @@
 		slug
 	} from '$lib/stores/stores';
 	import Filters from './Filters.svelte';
-	import { getTranslatedUrls } from '$lib/i18n/routesI18n';
-	import { invalidateAll, invalidate } from '$app/navigation';
+	import { invalidateAll } from '$app/navigation';
 
 	export let isMobile = false;
 

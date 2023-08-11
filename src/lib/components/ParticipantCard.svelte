@@ -8,8 +8,6 @@
 	export let expanded = false;
 	export let noBorder = false;
 
-	console.log('data', data);
-
 	let li: HTMLLIElement;
 	let classes: string[];
 

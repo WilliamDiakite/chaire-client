@@ -619,11 +619,11 @@ button {
 
     /** Participants */
     .member-list>h1 {
-        grid-column: span 2;
+        grid-column: span 1;
     }
 
     .member-list>ul {
-        grid-column: span 6;
+        grid-column: 2/-1;
     }
 
     .member-card {
