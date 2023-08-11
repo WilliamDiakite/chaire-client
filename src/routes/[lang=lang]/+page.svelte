@@ -23,7 +23,7 @@
 	<title>CRC Museologie citoyenne</title>
 </svelte:head>
 
-{#if showModal}
+<!-- {#if showModal}
 	<div class="modal" in:fade={{ duration: 1000 }}>
 		<p>
 			La Chaire de recherche du Canada en Muséologie citoyenne rend hommage aux peuples autochtones
@@ -35,7 +35,7 @@
 		</p>
 		<button on:click={closeModal}>Fermer</button>
 	</div>
-{/if}
+{/if} -->
 <div class="homepage">
 	<div class="bg pink"></div>
 	<div class="bg green">
