@@ -178,6 +178,7 @@ button {
     grid-column: span 4;
 }
 
+
 .text-content>p+h2,
 .text-content>p+h3 {
     margin-top: 1rem;
@@ -422,13 +423,6 @@ button {
     margin-bottom: 6.1rem;
 }
 
-/** All touch screens */
-@media screen and (max-width: 1024px) {
-    .empty {
-        visibility: hidden;
-    }
-}
-
 /** Tablet horizontal */
 @media screen and (min-width: 821px) and (max-width: 1024px) {
 
@@ -564,6 +558,10 @@ button {
 
     .bottom {
         margin-bottom: 2rem;
+    }
+
+    .empty {
+        visibility: hidden;
     }
 
     /** Layout */

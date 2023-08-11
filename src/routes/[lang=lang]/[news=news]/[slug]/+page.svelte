@@ -7,7 +7,7 @@
 
 	$: article ? slug.set(article.localizations.data[0].attributes.slug) : '';
 
-	// console.log(article.images);
+	$: console.log(article);
 </script>
 
 <div class="empty" />
@@ -21,8 +21,8 @@
 	<article class="text-content">
 		{@html article.content}
 	</article>
-	{#if article.images}
-		<!-- <Carrousel images={images.data} /> -->
+	{#if article.images.data}
+		<Carrousel images={article.images.data} />
 	{/if}
 </section>
 
