@@ -1,11 +1,6 @@
 import * as nodemailer from 'nodemailer'
 import type { Actions } from './$types';
-import { NODEMAILER_TOKEN, NODEMAILER_USER } from '$env/static/private'
-
-/**
- * TODO: add credentials as env variables
- * https://app.brevo.com/
- */
+import { NODEMAILER_TOKEN, NODEMAILER_USER, NODEMAILER_SENDTO } from '$env/static/private'
 
 export const prerender = false;
 
@@ -32,7 +27,7 @@ export const actions = {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const info = await transporter.sendMail({
             from: `${firstname} ${name} <${email}>`,
-            to: email as string,
+            to: NODEMAILER_SENDTO as string,
             subject,
             message,
         });
