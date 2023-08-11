@@ -17,9 +17,6 @@ const config = {
 		prerender: {
 			handleHttpError: (err) => console.log('\n------\n[prerender error]', err, '\n-------')
 		},
-		paths: {
-			base: ''
-		},
 		alias: {
 			$lib: 'src/lib/*',
 			$i18n: 'src/lib/i18n/*',

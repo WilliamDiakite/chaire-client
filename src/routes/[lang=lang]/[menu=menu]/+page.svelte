@@ -3,6 +3,10 @@
 	import { prevPage, screenType } from '$lib/stores/stores';
 </script>
 
+<svelte:head>
+	<title>Menu</title>
+</svelte:head>
+
 {#if $screenType !== 'desktop'}
 	<a href={$prevPage} class="menu-close"><img src="/xmark.svg" alt="Close menu logo" /></a>
 {/if}
@@ -20,7 +24,7 @@
 	<li><a href={`${$t('route.tenured')}`}>{$t('menu.tenured')}</a></li>
 	<li><a href={`${$t('route.participants')}`}>{$t('menu.participants')}</a></li>
 	<li><a href={`${$t('route.news')}`}>{$t('menu.news')}</a></li>
-	<li><a href={`${$t('route.archives')}`}>{$t('menu.archives')}</a></li>
+	<!-- <li><a href={`${$t('route.archives')}`}>{$t('menu.archives')}</a></li> -->
 	<li><a href={`${$t('route.contact')}`}>{$t('menu.contact')}</a></li>
 </ul>
 

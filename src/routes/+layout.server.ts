@@ -14,11 +14,12 @@ export const load = async (event) => {
 
     if (event.url.pathname === base + '/') {
         if (event.locals.lang) {
-            throw redirect(307, `${base}/${event.locals.lang}/menu`)
+            console.log('going in with path /')
+            throw redirect(307, `${base}/${event.locals.lang}`)
         }
         else {
             locale = 'fr'
-            throw redirect(307, `${base}/fr/menu`)
+            throw redirect(307, `${base}/fr`)
         }
     }
     else if (filteredSlug && !availableUrls.includes(filteredSlug)) {
