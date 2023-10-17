@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { screenType, homeShowFooter } from '$lib/stores/stores';
 	import { fade } from 'svelte/transition';
+	import ChaireLogoC from '$lib/components/ChaireLogoC.svelte';
+	import ChaireLogoM from '$lib/components/ChaireLogoM.svelte';
 
 	const showFooter = (e: PointerEvent | MouseEvent | TouchEvent) => {
 		homeShowFooter.set(true);
@@ -37,15 +39,24 @@
 	</div>
 {/if} -->
 <div class="homepage">
-	<div class="bg pink"></div>
+	<div class="bg pink">
+		<div class="logo-M-container">
+			<ChaireLogoM />
+		</div>
+	</div>
 	<div class="bg green">
 		{#if $screenType === 'desktop'}
-			<h1 class="title">Chaire de Recherche du Canada en Muséologie citoyenne</h1>
+			<h1 class="title">Chaire de recherche du Canada en Muséologie citoyenne</h1>
 		{/if}
+		<div class="logo-C-container">
+			<ChaireLogoC />
+		</div>
 	</div>
 	{#if $screenType !== 'desktop' && !$homeShowFooter}
 		<div class="bg blue">
-			<h1 class="title">Chaire de Recherche du Canada<br />en Muséologie<br />citoyenne</h1>
+			<h1 class="title">
+				Chaire de recherche du Canada<br />en Muséologie {$screenType === 'desktop' ? '<br/>' : ''} citoyenne
+			</h1>
 
 			<button class="btn primary bottom" on:click={showFooter}
 				><img class="icon" src="/arrow-down.svg" alt="show Footer" /></button
@@ -134,14 +145,31 @@
 		top: 60vh;
 		height: 50vh;
 	}
+
+	:root {
+		--margin-top: 20%;
+		--chaire-logo-dim: 75%;
+	}
+
 	.title {
-		position: relative;
 		color: white;
-		top: 20%;
-		left: 5%;
 		width: 80%;
+		margin: 0 auto;
+		margin-top: var(--margin-top);
 		line-height: 2.5rem;
 		font-size: 2.3rem;
+	}
+	.logo-M-container {
+		width: var(--chaire-logo-dim);
+		height: var(--chaire-logo-dim);
+		margin: 0 auto;
+		margin-top: var(--margin-top);
+	}
+	.logo-C-container {
+		width: var(--chaire-logo-dim);
+		height: var(--chaire-logo-dim);
+		margin: 0 auto;
+		margin-top: 5%;
 	}
 
 	/** All touch devices */
@@ -171,9 +199,24 @@
 		}
 	}
 
-	@media screen and (max-height: 684px) {
+	/** ALl smaller screens */
+	@media screen and (max-width: 1024px) {
+		:root {
+			--margin-top: 50%;
+		}
 		.title {
-			font-size: 1.5rem;
+			margin: 2% 0 auto;
+			font-size: 2rem;
+		}
+		.logo-C-container {
+			margin-top: var(--margin-top);
+		}
+	}
+
+	/** Tablet horizontal */
+	@media screen and (max-width: 821px) and (max-width: 1024px) {
+		.title {
+			width: 45%;
 		}
 	}
 
@@ -182,19 +225,18 @@
 		.bg {
 			height: 60vh;
 		}
-
-		.title {
-			top: 5%;
-			left: 2%;
-			width: 45%;
-		}
-
 		.bottom {
 			top: 25vh;
+		}
+		.title {
+			width: 45%;
 		}
 	}
 	/** Mobile */
 	@media screen and (max-width: 480px) {
+		:root {
+			--margin-top: 80%;
+		}
 		.bottom {
 			bottom: 2vh;
 		}
@@ -204,6 +246,11 @@
 		.blue {
 			bottom: 0;
 			top: 50vh;
+		}
+		.title {
+			width: 100%;
+			font-size: 2.5rem;
+			line-height: 3.2rem;
 		}
 	}
 </style>
