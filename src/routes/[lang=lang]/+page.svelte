@@ -147,7 +147,7 @@
 	}
 
 	:root {
-		--margin-top: 20%;
+		--margin-top: 15%;
 		--chaire-logo-dim: 75%;
 	}
 

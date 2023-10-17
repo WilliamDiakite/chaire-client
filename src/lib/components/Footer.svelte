@@ -36,8 +36,12 @@
 	{/if}
 
 	<ul class="logos">
-		<img class="udem" src="/logo/udem.svg" alt="Logo Université de Montréal" />
-		<img class="cieco" src="/logo/cieco-grey.svg" alt="Logo CIÉCO" />
+		<a href="https://musique.umontreal.ca/accueil/" rel="external">
+			<img class="udem" src="/logo/udem.svg" alt="Logo Université de Montréal" />
+		</a>
+		<a href="https://musique.umontreal.ca/accueil/" rel="external">
+			<img class="cieco" src="/logo/cieco-grey.svg" alt="Logo CIÉCO" />
+		</a>
 	</ul>
 </footer>
 
