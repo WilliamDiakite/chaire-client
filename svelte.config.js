@@ -15,7 +15,8 @@ const config = {
 			fallback: './src/app.html'
 		}),
 		prerender: {
-			handleHttpError: (err) => console.log('\n------\n[prerender error]', err, '\n-------')
+			// handleHttpError: (err) => console.log('\n------\n[prerender error]', err, '\n-------'),
+			entries: ['/en', '/fr']
 		},
 		alias: {
 			$lib: 'src/lib/*',

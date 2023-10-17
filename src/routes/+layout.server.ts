@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { getSectionTitle, getRedirectUrls, availableUrls, getTranslatedUrls } from '$i18n/routesI18n.js'
 
-export const prerender = true
+// export const prerender = true
 
 export const load = async (event) => {
     let filterType: 'role' | 'event' | 'none' = 'none'

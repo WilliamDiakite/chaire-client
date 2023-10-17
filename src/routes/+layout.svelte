@@ -20,6 +20,9 @@
 
 	export let data;
 
+	/** THIS IS TEMPORARY => HIDE NAV, ONLY SHOW HOMEPAGE w/ LOGO*/
+	const showNav = false;
+
 	$: isMobile = $screenType === 'mobile';
 	$: console.log('screen', $screenType, $screenWidth);
 
@@ -52,10 +55,12 @@
 	<div class="background" />
 {/if}
 
-{#if !isMenu}
-	<Nav bind:isMobile />
-{:else if isMenu && $screenType === 'desktop'}
-	<a href={$prevPage} class="menu-close"><img src="/xmark.svg" alt="Close menu logo" /></a>
+{#if showNav}
+	{#if !isMenu}
+		<Nav bind:isMobile />
+	{:else if isMenu && $screenType === 'desktop'}
+		<a href={$prevPage} class="menu-close"><img src="/xmark.svg" alt="Close menu logo" /></a>
+	{/if}
 {/if}
 
 <div class={`${isMenu ? 'center-menu' : ''}`}>
