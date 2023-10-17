@@ -36,10 +36,10 @@
 	{/if}
 
 	<ul class="logos">
-		<a href="https://musique.umontreal.ca/accueil/" rel="external">
+		<a id="udem-container" href="https://musique.umontreal.ca/accueil/" rel="external">
 			<img class="udem" src="/logo/udem.svg" alt="Logo Université de Montréal" />
 		</a>
-		<a href="https://musique.umontreal.ca/accueil/" rel="external">
+		<a id="cieco-container" href="https://musique.umontreal.ca/accueil/" rel="external">
 			<img class="cieco" src="/logo/cieco-grey.svg" alt="Logo CIÉCO" />
 		</a>
 	</ul>
@@ -69,24 +69,30 @@
 		display: flex;
 		flex-direction: row;
 		grid-column: 6/8;
-		gap: 2rem;
+		gap: 3rem;
 		align-items: center;
-		width: fit-content;
+		/* width: fit-content; */
+		width: 100%;
+		height: 100%;
 	}
 
-	.logos > img {
+	/* .logos > img {
 		object-fit: fill;
-	}
+	} */
 
+	#udem-container {
+	}
 	.udem {
-		width: 100rem;
-		max-width: 70%;
+		width: 15rem;
 		margin-bottom: 1rem;
 	}
 
+	#cieco-container {
+		/* max-width: 70%; */
+	}
 	.cieco {
-		width: 10rem;
-		max-width: 25%;
+		width: 7rem;
+		/* max-width: 25%; */
 	}
 
 	.primary {
@@ -96,6 +102,7 @@
 
 	.bottom {
 		cursor: pointer;
+		margin-bottom: 1.5rem !important;
 	}
 
 	/** Tablet horizontal */
@@ -138,6 +145,10 @@
 			top: 60vh;
 			padding: 3vh 0 0rem 0;
 		}
+
+		.social {
+			margin-bottom: 2rem !important;
+		}
 		.udem {
 			width: 20rem;
 			margin-left: auto;
@@ -163,12 +174,10 @@
 			padding-bottom: 3vh;
 		}
 		.udem {
-			max-width: 50%;
 			margin-left: auto;
 		}
 
 		.cieco {
-			max-width: 25%;
 			margin-right: auto;
 		}
 
