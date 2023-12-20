@@ -51,12 +51,12 @@
 {#if isMenu}
 	<div class="background" />
 {/if}
-
+<!-- 
 {#if !isMenu}
 	<Nav bind:isMobile />
 {:else if isMenu && $screenType === 'desktop'}
 	<a href={$prevPage} class="menu-close"><img src="/xmark.svg" alt="Close menu logo" /></a>
-{/if}
+{/if} -->
 
 <div class={`${isMenu ? 'center-menu' : ''}`}>
 	<main
