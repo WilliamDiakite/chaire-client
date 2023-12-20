@@ -32,7 +32,6 @@ export const screenType = derived(screenWidth, ($screenWidth) => {
 
 export const slug = writable('')
 export const i18nSlug = derived([page, slug], ([$page, $slug]) => {
-    console.log('$page from stores', $page.route.id, $slug)
     if ($page && (
         $page.route.id === '/[lang=lang]/[news=news]/[slug]' ||
         $page.route.id === '/[lang=lang]/[archives=archives]/[slug]'

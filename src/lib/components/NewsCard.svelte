@@ -22,8 +22,6 @@
 		slug: string;
 	};
 
-	console.log(data);
-
 	export let hideBorder = false;
 </script>
 

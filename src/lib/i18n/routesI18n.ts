@@ -61,8 +61,6 @@ export const getSectionTitle = ({ lang, ...rest }: { lang: string, }) => {
     if (key && !(key in routesSectionI8n))
         return ''
 
-    console.log('\n\n[routesI18n.getSectionTitle] key', key, '\n\n')
-
     return routesSectionI8n[key as string][lang]
 }
 
@@ -123,8 +121,6 @@ export const availableUrls = Object.keys(redirectLangUrl).reduce((acc, id: strin
 export const getRedirectUrls = (params: { [name: string]: string }) => {
     let redirects
 
-    console.log('[routesI18n.getRedirectUrls] params', params)
-
     try {
         // Find the section name in params and create redirects object
         let section = Object.keys(params).filter(k => k !== 'lang' && k !== 'slug')[0]
@@ -132,13 +128,12 @@ export const getRedirectUrls = (params: { [name: string]: string }) => {
             if (params[section].includes('1') || params[section].includes('2')) section = `axis${params[section].split('-')[1]}`
             else if (params[section] === 'about' || params[section] === 'a-propos') section = 'about'
         }
-        console.log('SECTION', section, params)
+
         redirects = {
             fr: `${redirectLangUrl[section]['fr']}${params.slug ? '/' + params.slug : ''}`,
             en: `${redirectLangUrl[section]['en']}${params.slug ? '/' + params.slug : ''}`,
         }
     } catch (e) {
-        console.log('[routesI18n.getRedirectUrls] WARN: locale or section in url not found in available routes')
         redirects = {
             fr: `${base}/fr`,
             en: `${base}/en`,

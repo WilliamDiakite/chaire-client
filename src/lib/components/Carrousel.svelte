@@ -4,8 +4,6 @@
 
 	export let images: Image[];
 
-	console.log(images);
-
 	const onClickNext = () => {
 		if (!images) return;
 		if (imgIdx < images.length - 1) imgIdx++;

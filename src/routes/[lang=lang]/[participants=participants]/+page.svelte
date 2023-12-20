@@ -6,9 +6,6 @@
 
 	export let data;
 
-	$: console.log(data);
-	$: console.log($filters);
-
 	$: grouped = data.participants
 		.sort()
 		.filter((p) => p.axis === $axisFilter)

@@ -14,14 +14,12 @@ type Ressources = {
 
 export const fetchData = async (ressource: keyof Ressources, locale: 'fr' | 'en', slug?: string) => {
     let filters = ''
-    console.log('[api.ts] slug', slug, '\n')
     if (slug)
         if (ressource === 'axes') filters = `filters[page][$eq]=${slug}&`
         else if (ressource === 'archives' || ressource === 'actualites') filters = `filters[slug][$eq]=${slug}&`
 
     let url = `${API_URL}/${ressource}?${filters}locale=${locale}&populate=*`
     url = url.replace('api//', 'api/')
-    console.log('[apit.ts fetchData] fetching', url, '\n')
 
     const response = fetch(url, {
         headers: {
@@ -41,8 +39,6 @@ export const fetchArticle = async (ressource: 'archives' | 'actualites' | 'axes'
 
     url = url.replace('api//', 'api/')
 
-    console.log('[api.ts fetchArticle] fetching', url.replace('api//', 'api/'), '\n')
-
     const response = fetch(url, {
         headers: {
             Authorization: `Bearer ${API_TOKEN}`,
@@ -50,6 +46,5 @@ export const fetchArticle = async (ressource: 'archives' | 'actualites' | 'axes'
     }).then((res) => res.json());
     const data = await response
 
-    console.log(data)
     return data.data[0].attributes;
 }

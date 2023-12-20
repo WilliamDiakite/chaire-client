@@ -4,11 +4,7 @@
 
 	export let data;
 
-	$: console.log(data);
-
 	$: article = data.article;
-
-	// console.log(article.images);
 </script>
 
 <div class="empty" />

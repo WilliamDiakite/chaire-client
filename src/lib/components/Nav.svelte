@@ -21,7 +21,6 @@
 
 	$: isFixed = $page.route.id === '/[lang=lang]';
 	$: addBg = isFixed && ($screenType === 'tablet-vertical' || $screenType === 'mobile');
-	$: console.log('Slugs set in Nav', $slug, $i18nSlug);
 </script>
 
 <nav class={`${isFixed ? 'nav-fixed' : ''} ${addBg ? 'clr-bg' : ''}`}>

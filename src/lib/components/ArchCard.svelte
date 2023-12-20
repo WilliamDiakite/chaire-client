@@ -7,8 +7,6 @@
 	$: ({ category, title, description, date, image, imgPlacement, slug } = archive);
 
 	const imgURL = 'https://strapi-hkwp.onrender.com';
-
-	console.log(slug);
 </script>
 
 <a class="card" href={`${$page.url.pathname}/${slug}`}>
