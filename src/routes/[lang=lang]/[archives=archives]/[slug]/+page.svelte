@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Carrousel from '$lib/components/Carrousel.svelte';
 	import { t } from '$lib/i18n/i18n.js';
-	import { slug } from '$lib/stores/stores.js';
 
 	export let data;
 
+	$: console.log(data);
+
 	$: article = data.article;
-	$: article ? slug.set(article.localizations.data[0].attributes.slug) : '';
 
 	// console.log(article.images);
 </script>

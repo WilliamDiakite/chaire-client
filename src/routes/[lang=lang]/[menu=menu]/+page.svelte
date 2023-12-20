@@ -24,7 +24,7 @@
 	<li><a href={`${$t('route.tenured')}`}>{$t('menu.tenured')}</a></li>
 	<li><a href={`${$t('route.participants')}`}>{$t('menu.participants')}</a></li>
 	<li><a href={`${$t('route.news')}`}>{$t('menu.news')}</a></li>
-	<!-- <li><a href={`${$t('route.archives')}`}>{$t('menu.archives')}</a></li> -->
+	<li><a href={`${$t('route.archives')}`}>{$t('menu.archives')}</a></li>
 	<li><a href={`${$t('route.contact')}`}>{$t('menu.contact')}</a></li>
 </ul>
 

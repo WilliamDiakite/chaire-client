@@ -3,7 +3,7 @@
 
 	export let image: Image | undefined;
 
-	const imgURL = 'https://strapi-hkwp.onrender.com';
+	const imgURL = 'https://strapi-fzxq.onrender.com';
 </script>
 
 {#if image}

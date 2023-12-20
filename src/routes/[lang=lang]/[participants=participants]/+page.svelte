@@ -6,6 +6,9 @@
 
 	export let data;
 
+	$: console.log(data);
+	$: console.log($filters);
+
 	$: grouped = data.participants
 		.sort()
 		.filter((p) => p.axis === $axisFilter)
@@ -15,6 +18,8 @@
 			grouped[key] ? grouped[key].push(p) : (grouped[key] = [p]);
 			return grouped;
 		}, {});
+
+	('filter.collaborator');
 </script>
 
 <svelte:head>

@@ -2,7 +2,6 @@
 	import { sectionTitle } from '$lib/stores/stores.js';
 	import ButtonBtt from '$lib/components/ButtonBtt.svelte';
 	import ImageCard from '$lib/components/ImageCard.svelte';
-	import { slug } from '$lib/stores/stores.js';
 
 	export let data;
 
