@@ -21,6 +21,8 @@ export const fetchData = async (ressource: keyof Ressources, locale: 'fr' | 'en'
     let url = `${API_URL}/${ressource}?${filters}locale=${locale}&populate=*`
     url = url.replace('api//', 'api/')
 
+    console.log('fetching', url)
+
     const response = fetch(url, {
         headers: {
             Authorization: `Bearer ${API_TOKEN}`,
@@ -38,6 +40,8 @@ export const fetchArticle = async (ressource: 'archives' | 'actualites' | 'axes'
         url = `${API_URL}/${ressource}?filters[slug][$eq]=${slug}&populate=*`
 
     url = url.replace('api//', 'api/')
+
+    console.log('fetching', url)
 
     const response = fetch(url, {
         headers: {
