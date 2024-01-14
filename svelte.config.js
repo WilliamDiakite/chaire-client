@@ -23,9 +23,6 @@ const config = {
 			$lib: 'src/lib/*',
 			$i18n: 'src/lib/i18n/*',
 			$components: 'src/lib/components'
-		},
-		paths: {
-			base: dev ? '' : 'https://crc-museologie-citoyenne.umontreal.ca'
 		}
 	}
 };
