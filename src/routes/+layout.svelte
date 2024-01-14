@@ -26,7 +26,6 @@
 	// update stores
 	$: locale.set(data.lang);
 	$: redirects.set(data.redirects ? data.redirects : $redirects);
-	$: base.set(data.base);
 	$: sectionTitle.set(data.sectionTitle);
 	$: filterType.set(data.filterType);
 	$: $screenType !== 'desktop' ? homeShowFooter.set(false) : null;

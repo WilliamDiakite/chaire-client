@@ -7,14 +7,13 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 		interface Locals {
-			lang: 'en' | 'fr',
+			lang: 'en' | 'fr';
 			redirects: {
-				fr: string,
-				en: string,
-			},
-			base: string,
+				fr: string;
+				en: string;
+			};
 		}
 	}
 }
 
-export { };
+export {};

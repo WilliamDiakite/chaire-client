@@ -15,14 +15,12 @@ export const load = async (event) => {
 
 	const filteredSlug = event.url.pathname.match(/\/\w{2}\/[\w-]+(?=\/|$)/gm)?.at(0);
 
-	const base = event.locals.base;
-
-	if (event.url.pathname === base + '/') {
+	if (event.url.pathname === '/') {
 		if (event.locals.lang) {
-			throw redirect(307, `${base}/${event.locals.lang}`);
+			throw redirect(307, `/${event.locals.lang}`);
 		} else {
 			locale = 'fr';
-			throw redirect(307, `${base}/fr`);
+			throw redirect(307, `/fr`);
 		}
 	} else if (filteredSlug && !availableUrls.includes(filteredSlug)) {
 		locale = filteredSlug.split('/')[1];
@@ -43,7 +41,6 @@ export const load = async (event) => {
 		lang: locale,
 		sectionTitle: getSectionTitle({ lang: event.locals.lang, ...event.params }),
 		filterType,
-		redirects,
-		base
+		redirects
 	};
 };
