@@ -4,7 +4,6 @@
 	export let data;
 
 	const article = data.article;
-	console.log(article);
 </script>
 
 <svelte:head>
@@ -23,10 +22,9 @@
 		{article.position}
 	</p>
 
-	<div class="tenured-content">
+	<div class="text-content tenured">
 		{@html article.bio}
 		<div class="publications">
-			<p class="publication-title">Publications :</p>
 			{@html article.publications}
 		</div>
 	</div>
@@ -47,12 +45,6 @@
 		grid-column: span 2;
 		padding-top: var(--padding-small);
 		width: 80%;
-	}
-
-	.tenured-content {
-		grid-column: span 4;
-		padding: var(--padding-small) 0 0 1rem;
-		/* grid-row: 2; */
 	}
 
 	.image-container {

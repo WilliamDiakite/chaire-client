@@ -5,7 +5,6 @@
 	export let data;
 
 	$: archives = data.archives.sort((a, b) => b.date - a.date);
-	$: archives ? (archives = [...archives, ...archives, ...archives]) : [];
 
 	$sectionTitle = 'Archives';
 </script>

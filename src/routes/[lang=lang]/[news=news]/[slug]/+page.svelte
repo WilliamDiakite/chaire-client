@@ -1,13 +1,11 @@
 <script lang="ts">
 	import Carrousel from '$lib/components/Carrousel.svelte';
-	import { slug } from '$lib/stores/stores.js';
+	import ImageCard from '$lib/components/ImageCard.svelte';
 	export let data;
 
 	$: article = data.article;
 
-	$: article ? slug.set(article.localizations.data[0].attributes.slug) : '';
-
-	$: console.log(article);
+	// $: article ? slug.set(article.localizations.data[0].attributes.slug) : '';
 </script>
 
 <div class="empty" />
@@ -21,9 +19,7 @@
 	<article class="text-content">
 		{@html article.content}
 	</article>
-	{#if article.images.data}
-		<Carrousel images={article.images.data} />
-	{/if}
+	<Carrousel images={article.images.data} />
 </section>
 
 <div class="empty bottom" />

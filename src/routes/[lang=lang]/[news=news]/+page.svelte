@@ -5,7 +5,6 @@
 	export let data;
 
 	$: news = data.news.sort((a, b) => b.date - a.date);
-	$: news ? (news = [...news, ...news, ...news]) : [];
 </script>
 
 <svelte:head>

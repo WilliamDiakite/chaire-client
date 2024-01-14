@@ -36,7 +36,7 @@
 	"type": "module",
 	"dependencies": {
 		"nodemailer": "^6.9.4"
-	},
+},
 	"engines": {
 		"node": "<17"
 	}

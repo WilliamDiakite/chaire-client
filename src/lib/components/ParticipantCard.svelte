@@ -70,6 +70,10 @@
 		transition: all 0.1s ease-in;
 	}
 
+	.img-container {
+		grid-column: span 2;
+	}
+
 	.hover {
 		background-color: var(--clr-accent);
 		color: white;

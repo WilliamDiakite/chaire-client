@@ -15,8 +15,6 @@
 			grouped[key] ? grouped[key].push(p) : (grouped[key] = [p]);
 			return grouped;
 		}, {});
-
-	('filter.collaborator');
 </script>
 
 <svelte:head>
@@ -49,11 +47,13 @@
 		width: 300%;
 		font-size: 3rem;
 		padding-top: 0.8rem;
+		height: fit-content;
 	}
 
 	h1,
 	ul {
 		border-top: var(--border-accent);
+		height: fit-content;
 	}
 
 	ul {

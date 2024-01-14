@@ -24,15 +24,19 @@
 <div class="carrousel">
 	<ImageCard {image} />
 	<div class="caption-container">
-		<p class="caption">{images[imgIdx].attributes.alternativeText}</p>
-		<div class="caroussel-btns">
-			<button class="caroussel-btn" on:click={onClickPrevious}
-				><img class="icon" src="/arrow-left.svg" alt="Previous" /></button
-			>
-			<button class="caroussel-btn" on:click={onClickNext}
-				><img class="icon" src="/arrow-right.svg" alt="Next" /></button
-			>
-		</div>
+		<p class="caption">
+			{image.attributes.caption}
+		</p>
+		{#if images.length > 1}
+			<div class="carrousel-btns">
+				<button class="carrousel-btn" on:click={onClickPrevious}
+					><img class="icon" src="/arrow-left.svg" alt="Previous" /></button
+				>
+				<button class="carrousel-btn" on:click={onClickNext}
+					><img class="icon" src="/arrow-right.svg" alt="Next" /></button
+				>
+			</div>
+		{/if}
 	</div>
 </div>
 
@@ -44,22 +48,21 @@
 	.caption-container {
 		margin-top: 0.5rem;
 		display: flex;
-		width: 75%;
 	}
 
 	.caption {
 		font-size: 0.8rem;
+		width: 80%;
+		margin-right: auto;
 	}
 
-	.caption-container > *:last-child {
-		margin-left: auto;
-	}
-
-	.caroussel-btn {
+	.carrousel-btn {
 		cursor: pointer;
 	}
-	.caroussel-btns {
+	.carrousel-btns {
 		display: flex;
 		gap: 1rem;
+		margin-left: auto;
+		align-items: start;
 	}
 </style>

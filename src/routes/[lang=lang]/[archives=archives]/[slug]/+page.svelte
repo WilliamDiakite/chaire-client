@@ -19,7 +19,7 @@
 		{@html article.content}
 	</article>
 	{#if article.images}
-		<!-- <Carrousel images={images.data} /> -->
+		<Carrousel images={article.images.data} />
 	{/if}
 </section>
 

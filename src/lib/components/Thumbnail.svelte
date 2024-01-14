@@ -7,18 +7,14 @@
 </script>
 
 {#if image}
-	<figure>
-		<img src={imgURL + image.attributes.url} alt={image.attributes.alternativeText} />
-	</figure>
+	<img src={imgURL + image.attributes.url} alt={image.attributes.alternativeText} />
 {/if}
 
 <style>
-	figure {
-		width: 100%;
-	}
-
 	img {
 		width: 100%;
+		max-height: 15rem;
 		object-fit: cover;
+		object-position: top;
 	}
 </style>
