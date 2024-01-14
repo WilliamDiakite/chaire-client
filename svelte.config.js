@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
+import { dev } from '$app/environment';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -22,6 +23,9 @@ const config = {
 			$lib: 'src/lib/*',
 			$i18n: 'src/lib/i18n/*',
 			$components: 'src/lib/components'
+		},
+		paths: {
+			base: dev ? '' : 'https://crc-museologie-citoyenne.umontreal.ca'
 		}
 	}
 };
