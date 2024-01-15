@@ -56,4 +56,6 @@ export function sanitize(s: string) {
 	doc.querySelectorAll('a').forEach((anchor) => {
 		anchor.setAttribute('rel', 'external');
 	});
+
+	return dom.serialize();
 }

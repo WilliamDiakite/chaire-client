@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Carrousel from '$lib/components/Carrousel.svelte';
 	import { t } from '$lib/i18n/i18n.js';
-	import { sanitize } from '$lib/helpers/helpers';
 
 	export let data;
 
@@ -17,7 +16,7 @@
 	</header>
 
 	<article class="text-content">
-		{@html sanitize(article.content)}
+		{@html article.content}
 	</article>
 	{#if article.images && article.images.data}
 		<Carrousel images={article.images.data} />

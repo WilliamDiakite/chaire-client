@@ -5,8 +5,6 @@
 
 	export let data;
 
-	$: console.log(data.news);
-
 	$: news = data.news ? data.news.sort((a, b) => b.date - a.date) : [];
 </script>
 
