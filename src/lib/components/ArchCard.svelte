@@ -15,7 +15,7 @@
 		<p>{date}</p>
 	</header>
 	{#if imgPlacement === 'top'}
-		{#if images}
+		{#if images && images.data}
 			<Thumbnail image={images.data[0]} />
 		{/if}
 	{/if}
@@ -24,7 +24,7 @@
 		<p class="card-description">{description}</p>
 	</div>
 	{#if imgPlacement === 'bottom'}
-		{#if images}
+		{#if images && images.data}
 			<Thumbnail image={images.data[0]} />
 		{/if}
 	{/if}

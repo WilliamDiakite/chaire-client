@@ -15,17 +15,17 @@
 	<h1 class="card-title">{data.date}</h1>
 	{#if data.images}
 		{#if data.imgPlacement === 'top'}
-			{#if data.images && data.images.data.length > 0}
+			{#if data.images.data !== null && data.images.data.length > 0}
 				<Thumbnail image={data.images.data[0]} />
 			{/if}
 		{/if}
-		<div class={`${data.images.data.length > 0 ? '' : 'no-images'}`}>
+		<div class={`${data.images.data !== null && data.images.data.length > 0 ? '' : 'no-images'}`}>
 			<h2 class="card-description-title">{data.title}</h2>
 			<p class="card-description">{data.description}</p>
 		</div>
 
 		{#if data.imgPlacement === 'bottom'}
-			{#if data.images}
+			{#if data.images.data !== null && data.images.data.length > 0}
 				<Thumbnail image={data.images.data[0]} />
 			{/if}
 		{/if}

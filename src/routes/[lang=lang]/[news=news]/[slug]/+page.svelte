@@ -19,7 +19,9 @@
 	<article class="text-content">
 		{@html article.content}
 	</article>
-	<Carrousel images={article.images.data} />
+	{#if article.images.data}
+		<Carrousel images={article.images.data} />
+	{/if}
 </section>
 
 <div class="empty bottom" />

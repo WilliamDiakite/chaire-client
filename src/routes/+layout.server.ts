@@ -15,20 +15,13 @@ export const load = async (event) => {
 
 	const filteredSlug = event.url.pathname.match(/\/\w{2}\/[\w-]+(?=\/|$)/gm)?.at(0);
 
-	if (event.url.pathname === '/') {
-		if (event.locals.lang) {
-			throw redirect(307, `/${event.locals.lang}`);
-		} else {
-			locale = 'fr';
-			throw redirect(307, `/fr`);
-		}
-	} else if (filteredSlug && !availableUrls.includes(filteredSlug)) {
+	if (filteredSlug && !availableUrls.includes(filteredSlug)) {
 		locale = filteredSlug.split('/')[1];
 		locale = ['fr', 'en'].includes(locale) ? locale : 'fr';
 
 		redirects = getRedirectUrls(event.params);
 		const redirectUrl = redirects[locale as 'fr' | 'en'];
-		throw redirect(307, redirectUrl);
+		redirect(307, redirectUrl);
 	} else {
 		redirects = getTranslatedUrls(event.url.pathname, event.params);
 		locale = event.locals.lang;

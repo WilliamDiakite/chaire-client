@@ -18,7 +18,7 @@
 	<article class="text-content">
 		{@html article.content}
 	</article>
-	{#if article.images}
+	{#if article.images && article.images.data}
 		<Carrousel images={article.images.data} />
 	{/if}
 </section>

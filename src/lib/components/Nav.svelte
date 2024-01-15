@@ -21,6 +21,10 @@
 
 	$: isFixed = $page.route.id === '/[lang=lang]';
 	$: addBg = isFixed && ($screenType === 'tablet-vertical' || $screenType === 'mobile');
+
+	$: console.log($redirects);
+	$: console.log(`${$i18nSlug}`);
+	$: console.log(`${$redirects.en}/${$i18nSlug}`);
 </script>
 
 <nav class={`${isFixed ? 'nav-fixed' : ''} ${addBg ? 'clr-bg' : ''}`}>
@@ -50,7 +54,7 @@
 		<li>
 			<a
 				class="btn primary"
-				href={$page.data.lang === 'fr' ? $page.url.pathname : `${$redirects.fr}/${$i18nSlug}`}
+				href={`${$redirects.fr}${$i18nSlug}`}
 				rel="alternative"
 				on:click={() => invalidateAll()}
 				hreflang="fr">FR</a
@@ -59,7 +63,7 @@
 		<li>
 			<a
 				class="btn primary"
-				href={$page.data.lang === 'en' ? $page.url.pathname : `${$redirects.en}/${$i18nSlug}`}
+				href={`${$redirects.en}${$i18nSlug}`}
 				rel="alternative"
 				on:click={() => invalidateAll()}
 				hreflang="en">EN</a
