@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { screenType, homeShowFooter } from '$lib/stores/stores';
-	import { fade } from 'svelte/transition';
 	import ChaireLogoC from '$lib/components/ChaireLogoC.svelte';
 	import ChaireLogoM from '$lib/components/ChaireLogoM.svelte';
 
@@ -13,9 +12,7 @@
 	};
 
 	$: showModal = false;
-	const closeModal = () => {
-		showModal = false;
-	};
+
 	setTimeout(() => {
 		showModal = true;
 	}, 2000);
@@ -25,19 +22,6 @@
 	<title>CRC Museologie citoyenne</title>
 </svelte:head>
 
-<!-- {#if showModal}
-	<div class="modal" in:fade={{ duration: 1000 }}>
-		<p>
-			La Chaire de recherche du Canada en Muséologie citoyenne rend hommage aux peuples autochtones
-			qui, bien avant l’établissement des Français, ont interagi les uns avec les autres sur le
-			territoire montréalais et elle célèbre le souvenir des signataires de la Grande Paix de 1701.
-			Ce traité, signé à Montréal, a établi une paix durable entre la France, ses alliés autochtones
-			et la Confédération haudenosauni. L’esprit de fraternité à l’origine de ce traité est un
-			modèle pour notre communauté universitaire.
-		</p>
-		<button on:click={closeModal}>Fermer</button>
-	</div>
-{/if} -->
 <div class="homepage">
 	<div class="bg pink">
 		<div class="logo-M-container">
@@ -68,32 +52,6 @@
 <!-- <div class="title"></div> -->
 
 <style>
-	.modal {
-		position: absolute;
-		width: 50vw;
-		height: 50vh;
-		background-color: rgba(0, 0, 0, 0.6);
-		z-index: 5;
-		left: 25%;
-		top: 220%;
-		border-radius: 10px;
-	}
-	.modal p {
-		color: white;
-		position: absolute;
-		top: 21%;
-		padding: 0 2rem;
-		font-size: 1.3rem;
-		line-height: 2rem;
-		font-weight: 300;
-	}
-	.modal button {
-		color: white;
-		padding-left: 2rem;
-		padding-top: 2rem;
-		font-size: 0.9rem;
-		cursor: pointer;
-	}
 	.homepage {
 		position: fixed;
 		top: 0;

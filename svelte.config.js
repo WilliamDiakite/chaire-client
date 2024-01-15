@@ -14,7 +14,6 @@ const config = {
 		adapter: adapter({ fallback: 'index.html' }),
 		prerender: {
 			// handleHttpError: (err) => console.log('\n------\n[prerender error]', err, '\n-------'),
-			entries: ['*', '/en', '/fr']
 		},
 		alias: {
 			$lib: 'src/lib/*',

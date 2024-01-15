@@ -33,6 +33,7 @@ export const fetchData = async (
 		}
 	}).then((res) => res.json());
 	const data = await response;
+
 	return data;
 };
 

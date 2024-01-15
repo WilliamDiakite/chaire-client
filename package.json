@@ -17,6 +17,7 @@
 		"@sveltejs/adapter-static": "^3.0.1",
 		"@sveltejs/kit": "^2.3.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/jsdom": "^21.1.6",
 		"@types/nodemailer": "^6.4.14",
 		"@types/showdown": "^2.0.6",
 		"@typescript-eslint/eslint-plugin": "^6.18.1",
@@ -36,9 +37,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"jsdom": "^23.2.0",
 		"nodemailer": "^6.9.8"
 	},
 	"engines": {
 		"node": ">=18.18.0"
-	  }
+	}
 }

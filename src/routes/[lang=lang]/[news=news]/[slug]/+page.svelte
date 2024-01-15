@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Carrousel from '$lib/components/Carrousel.svelte';
 	import ImageCard from '$lib/components/ImageCard.svelte';
+	import { sanitize } from '$lib/helpers/helpers';
+
 	export let data;
 
 	$: article = data.article;
@@ -17,7 +19,7 @@
 	</header>
 
 	<article class="text-content">
-		{@html article.content}
+		{@html sanitize(article.content)}
 	</article>
 	{#if article.images.data}
 		<Carrousel images={article.images.data} />
