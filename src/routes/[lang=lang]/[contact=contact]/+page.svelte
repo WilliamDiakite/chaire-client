@@ -1,5 +1,35 @@
 <script lang="ts">
 	import { sectionTitle } from '$lib/stores/stores';
+
+	let submissionResult = '';
+
+	let firstname: string = '',
+		name: string = '',
+		email: string = '',
+		subject: string = '',
+		message: string = '';
+
+	const onFormSubmit = async (e: SubmitEvent) => {
+		const formData = {
+			name,
+			firstname,
+			email,
+			subject,
+			message
+		};
+
+		fetch('/api/contact', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formData)
+		}).then((res) => {
+			if (res.ok) submissionResult = 'Le message a bien été envoyé';
+			else submissionResult = "Une erreur est survenue lors de l'envoi du message";
+		});
+	};
+
 	$sectionTitle = 'Contact';
 </script>
 
@@ -22,27 +52,57 @@
 
 <section id="section-mail">
 	<h2>Courriel</h2>
-	<form method="POST">
+	<form method="POST" on:submit|preventDefault={onFormSubmit}>
 		<div class="input-group">
 			<label for="name">Nom</label>
 			<div class="multi-input">
-				<input placeholder="Prénom" type="text" name="firstname" id="firstname" required />
-				<input placeholder="Nom" type="text" name="name" id="name" required />
+				<input
+					placeholder="Prénom"
+					type="text"
+					name="firstname"
+					id="firstname"
+					bind:value={firstname}
+					required
+				/>
+				<input placeholder="Nom" type="text" name="name" id="name" bind:value={name} required />
 			</div>
 		</div>
 		<div>
 			<label for="email">Courriel</label>
-			<input placeholder="Adresse" type="text" name="email" id="email" required />
+			<input
+				placeholder="Adresse"
+				type="email"
+				name="email"
+				id="email"
+				bind:value={email}
+				required
+			/>
 		</div>
 		<div>
 			<label for="subject">Sujet du message</label>
-			<input placeholder="Objet" type="text" name="subject" id="subject" required />
+			<input
+				placeholder="Objet"
+				type="text"
+				name="subject"
+				id="subject"
+				bind:value={subject}
+				required
+			/>
 		</div>
 		<div>
 			<label for="message">Message</label>
-			<input size="500" spellcheck="true" type="text" name="message" id="message" required />
+			<input
+				size="500"
+				spellcheck="true"
+				type="text"
+				name="message"
+				id="message"
+				bind:value={message}
+				required
+			/>
 		</div>
 		<button class="btn primary" type="submit">Envoyer</button>
+		<p class="submission-msg">{submissionResult}</p>
 	</form>
 </section>
 

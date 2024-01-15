@@ -21,10 +21,6 @@
 
 	$: isFixed = $page.route.id === '/[lang=lang]';
 	$: addBg = isFixed && ($screenType === 'tablet-vertical' || $screenType === 'mobile');
-
-	$: console.log($redirects);
-	$: console.log(`${$i18nSlug}`);
-	$: console.log(`${$redirects.en}/${$i18nSlug}`);
 </script>
 
 <nav class={`${isFixed ? 'nav-fixed' : ''} ${addBg ? 'clr-bg' : ''}`}>
