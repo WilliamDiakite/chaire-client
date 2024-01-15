@@ -36,10 +36,10 @@
 	{/if}
 
 	<ul class="logos">
-		<a id="udem-container" href="https://musique.umontreal.ca/accueil/" rel="external">
+		<a id="udem-container" href="https://www.umontreal.ca/" rel="external">
 			<img class="udem" src="/logo/udem.svg" alt="Logo Université de Montréal" />
 		</a>
-		<a id="cieco-container" href="https://musique.umontreal.ca/accueil/" rel="external">
+		<a id="cieco-container" href="https://cieco.co/fr" rel="external">
 			<img class="cieco" src="/logo/cieco-grey.svg" alt="Logo CIÉCO" />
 		</a>
 	</ul>
