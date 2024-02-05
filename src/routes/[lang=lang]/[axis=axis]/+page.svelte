@@ -26,12 +26,12 @@
 			{#if article.image_small.data}
 				<ImageCard image={article.image_small.data} />
 			{/if}
-			<p>{article.image_small.data.attributes.alternativeText}</p>
+			<p>{article.image_small.data.attributes.caption}</p>
 		</div>
 		<div class="image-container big">
 			{#if article.image_big && article.image_big.data}
 				<ImageCard image={article.image_big.data} />
-				<p>{article.image_big.data.attributes.alternativeText}</p>
+				<p>{article.image_big.data.attributes.caption}</p>
 			{/if}
 		</div>
 	</div>
